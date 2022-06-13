@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26-ene-2021 11:05:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="accesoadatosev2.Payment" table="payment" catalog="sakila" optimistic-lock="version">
+        <id name="paymentId" type="java.lang.Short">
+            <column name="payment_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="customer" class="accesoadatosev2.Customer" fetch="select">
+            <column name="customer_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="rental" class="accesoadatosev2.Rental" fetch="select">
+            <column name="rental_id" />
+        </many-to-one>
+        <many-to-one name="staff" class="accesoadatosev2.Staff" fetch="select">
+            <column name="staff_id" not-null="true" />
+        </many-to-one>
+        <property name="amount" type="big_decimal">
+            <column name="amount" precision="5" not-null="true" />
+        </property>
+        <property name="paymentDate" type="timestamp">
+            <column name="payment_date" length="19" not-null="true" />
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>
